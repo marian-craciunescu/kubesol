@@ -1,6 +1,9 @@
 #!/bin/bash
 
 echo 'Install some packages'
+apt update
+apt install software-properties-common -y
+add-apt-repository --yes --update ppa:ansible/ansible
 apt install ansible python3-kubernetes pwgen cowsay -y
 ansible-galaxy collection install kubernetes.core
 

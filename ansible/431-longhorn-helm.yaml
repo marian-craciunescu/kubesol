@@ -3,6 +3,7 @@
   hosts: localhost
   gather_facts: false
   connection: local
+  become: yes
   vars:
     NS: longhorn-system
 

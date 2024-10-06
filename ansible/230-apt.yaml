@@ -2,6 +2,7 @@
 - name: Install the required packages
   hosts: all
   gather_facts: false
+  become: yes
 
   tasks:
     - name: Update APT package cache

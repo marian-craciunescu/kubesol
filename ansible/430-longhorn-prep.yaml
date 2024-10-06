@@ -2,7 +2,7 @@
 - name: Longhorn prep
   hosts: worker
   gather_facts: false
-
+  become: yes
   tasks:
     - name: Format longhorn device
       filesystem:

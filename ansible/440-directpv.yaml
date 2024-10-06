@@ -3,6 +3,7 @@
   hosts: localhost
   gather_facts: false
   connection: local
+  become: yes
   vars:
     D: "/root/.kubesol"
     bin: "https://github.com/minio/directpv/releases/download/v4.0.10/kubectl-directpv_4.0.10_linux_amd64"

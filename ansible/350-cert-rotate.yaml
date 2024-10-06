@@ -3,7 +3,7 @@
   hosts: controller_one, controller
   serial: 1
   gather_facts: false
-
+  become: yes
   tasks:
     - name: Stop rke2-server
       systemd:

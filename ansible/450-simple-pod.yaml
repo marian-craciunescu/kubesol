@@ -3,7 +3,7 @@
   hosts: localhost
   gather_facts: false
   connection: local
-
+  become: yes
   tasks:
     - name: Create simple-pod
       kubernetes.core.k8s:

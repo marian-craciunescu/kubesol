@@ -3,6 +3,8 @@
 - name: Configurate controller one
   hosts: controller_one
   gather_facts: false
+  become: yes
+
   vars:
     CONFIG_FILE: /etc/rancher/rke2/config.yaml
 

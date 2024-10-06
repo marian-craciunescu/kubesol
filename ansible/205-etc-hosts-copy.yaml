@@ -4,6 +4,7 @@
 - name: Generate /etc/hosts on c1
   hosts: controller_one
   gather_facts: false
+  become: yes
 
   tasks:
     - name: Check if exists /tmp/hosts.txt

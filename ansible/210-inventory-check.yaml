@@ -2,6 +2,7 @@
 - name: Inventory check
   hosts: all
   gather_facts: false
+  become: yes
 
   tasks:
     - name: Ansible ping

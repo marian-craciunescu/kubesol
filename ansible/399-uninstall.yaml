@@ -5,7 +5,7 @@
 - name: Uninstall RKE2
   hosts: controller_one,controller,worker
   gather_facts: false
-
+  become: yes
   tasks:
     - name: Please, first uninstall DirectPV!
       pause:

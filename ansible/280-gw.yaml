@@ -2,6 +2,7 @@
 - name: Setup Gateway
   hosts: gateway
   gather_facts: false
+  become: yes
 
   tasks:
     - name: Install misc gateway packages
