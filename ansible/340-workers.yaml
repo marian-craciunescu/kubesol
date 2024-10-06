@@ -39,7 +39,7 @@
     - name: Download rke2.sh
       get_url:
         url: https://get.rke2.io
-        dest: /root/rke2.sh
+        dest: "{{ base_path }}/rke2.sh"
         mode: '0700'
 
     - name: Installing rke2 agent

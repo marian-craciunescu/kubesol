@@ -3,7 +3,7 @@
 # Prerequisites
 *.d
 .idea/*
-
+./hosts_tmp
 # Object files
 *.o
 *.ko

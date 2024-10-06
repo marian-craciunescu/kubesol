@@ -18,19 +18,19 @@
     - name: Get helm binary tar.gz
       get_url:
         url: "https://get.helm.sh/{{ HELM_ARCHIVE }}"
-        dest: /root
+        dest: "{{ base_path }}"
         mode: '0644'
 
     - name: Unpack helm tar.gz
       unarchive:
-        src: "/root/{{ HELM_ARCHIVE }}"
-        dest: /root
+        src: "{{ base_path }}/{{ HELM_ARCHIVE }}"
+        dest: "{{ base_path }}"
         remote_src: true
 
     - name: Copy helm binary to /usr/local/bin
       copy:
         remote_src: true
-        src: /root/linux-amd64/helm
+        src: "{{ base_path }}/linux-amd64/helm"
         dest: /usr/local/bin
         mode: '0755'
 

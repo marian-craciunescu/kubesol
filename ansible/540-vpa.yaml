@@ -18,9 +18,9 @@
     - name: Autoscaler git checkout
       git:
         repo: "https://github.com/kubernetes/autoscaler.git"
-        dest: /root/vpa
+        dest: "{{ base_path }}/vpa"
 
     - name: Run vpa-up.sh
       shell:
-        chdir: /root/vpa/vertical-pod-autoscaler
+        chdir: "{{ base_path }}/vpa/vertical-pod-autoscaler"
         cmd: hack/vpa-up.sh

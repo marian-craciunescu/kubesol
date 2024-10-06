@@ -74,11 +74,11 @@
     - name: Download rke2.sh
       get_url:
         url: https://get.rke2.io
-        dest: /root/rke2.sh
+        dest: "{{ base_path }}/rke2.sh"
         mode: '0700'
 
     - name: Installing rke2 server
-      command: /root/rke2.sh
+      command: "{{ base_path }}/rke2.sh"
       environment:
         INSTALL_RKE2_VERSION: "{{ rke2_version | default('') }}"
 
@@ -90,13 +90,13 @@
 
     - name: Kubeconfig directory
       file:
-        path: /root/.kube
+        path: "{{ base_path }}/.kube"
         state: directory
         mode: '0700'
 
     - name: Kubeconfig link
       file:
-        dest: /root/.kube/config
+        dest: "{{ base_path }}/.kube/config"
         src: /etc/rancher/rke2/rke2.yaml
         state: link
 

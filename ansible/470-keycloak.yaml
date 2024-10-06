@@ -5,7 +5,7 @@
   connection: local
   vars:
     NS: "keycloak"
-    D: "/root/.kubesol"
+    D: "{{ D }}"
     iname: "keycloak"
 
   tasks:

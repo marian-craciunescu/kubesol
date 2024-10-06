@@ -5,9 +5,9 @@
 - import_playbook: 422-kubernetes-dashboard-ingress.yaml
 
 ## storage classes
-- import_playbook: 430-longhorn-prep.yaml
-- import_playbook: 431-longhorn-helm.yaml
-- import_playbook: 432-longhorn-web.yaml
+#- import_playbook: 430-longhorn-prep.yaml
+#- import_playbook: 431-longhorn-helm.yaml
+#- import_playbook: 432-longhorn-web.yaml
 - import_playbook: 440-directpv.yaml
 
 ### dummy exmples
