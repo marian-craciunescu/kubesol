@@ -45,7 +45,7 @@
 - name: Cleanup directpv on workers
   hosts: worker
   gather_facts: false
-
+  become: yes
   tasks:
 
 # ansible mount module requires path which sucks

@@ -41,7 +41,7 @@
 - name: Copy /etc/hosts on all
   hosts: all
   gather_facts: false
-
+  become: yes
   tasks:
     - name: Copy /etc/hosts from c1 to all others
       copy:

@@ -2,7 +2,7 @@
 - name: Add some handy tools on controller one c1
   hosts: controller_one
   gather_facts: false
-
+  become: yes
 
   vars:
     HELM_ARCHIVE: "helm-v3.15.1-linux-amd64.tar.gz"

@@ -23,7 +23,7 @@
   hosts: worker
   serial: 1
   gather_facts: false
-
+  become: yes
   tasks:
     - name: Restart rke2-agent
       systemd:
