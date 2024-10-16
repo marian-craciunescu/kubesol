@@ -24,6 +24,7 @@
       kubernetes.core.k8s:
         state: present
         src: "{{ D }}/local-path-storage.yaml"
+      become: yes
 
     - name: Set Local Path Storage as default StorageClass
       kubernetes.core.k8s:
@@ -34,3 +35,4 @@
             annotations:
               storageclass.kubernetes.io/is-default-class: "true"
         apply: yes
+      become: yes
