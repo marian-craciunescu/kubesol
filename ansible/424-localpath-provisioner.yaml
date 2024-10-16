@@ -27,11 +27,10 @@
 
     - name: Set Local Path Storage as default StorageClass
       kubernetes.core.k8s:
-        state: patch
         kind: StorageClass
         name: local-path
-        api_version: storage.k8s.io/v1
-        patch:
+        definition:
           metadata:
             annotations:
               storageclass.kubernetes.io/is-default-class: "true"
+        apply: yes
