@@ -67,36 +67,3 @@
       shell:
         cmd: kubectl -n "{{ NS }}" create secret generic basic-auth --from-file=auth
 
-    - include_tasks: tasks/issuer.yaml
-
-    - name: Create longhorn ingress
-      kubernetes.core.k8s:
-        state: present
-        definition:
-          apiVersion: networking.k8s.io/v1
-          kind: Ingress
-          metadata:
-            name: longhorn-ingress
-            namespace: "{{ NS }}"
-            annotations:
-              nginx.ingress.kubernetes.io/auth-type: basic
-              nginx.ingress.kubernetes.io/auth-secret: basic-auth
-              nginx.ingress.kubernetes.io/auth-realm: 'Longhorn web interface '
-              nginx.ingress.kubernetes.io/proxy-body-size: 10000m
-              cert-manager.io/issuer: "letsencrypt-longhorn"
-          spec:
-            tls:
-            - hosts:
-              - "longhorn.{{ ext_dns_name }}"
-              secretName: longhorn-tls
-            rules:
-            - host: "longhorn.{{ ext_dns_name }}"
-              http:
-                paths:
-                - pathType: Prefix
-                  path: "/"
-                  backend:
-                    service:
-                      name: longhorn-frontend
-                      port:
-                        number: 80

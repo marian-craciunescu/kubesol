@@ -21,7 +21,7 @@ singleBinary:
   persistence:
     enabled: true
     size: 1Gi
-    storageClass: longhorn
+    storageClass: default
 read:
   replicas: 0
 backend:
