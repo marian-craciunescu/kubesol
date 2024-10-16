@@ -1,0 +1,37 @@
+---
+- name: Install LocalPath-Provisioner
+  hosts: localhost
+  gather_facts: false
+  connection: local
+  become: yes
+  vars:
+    D: "{{ base_path }}/.kubesol"
+
+  tasks:
+    - name: Download Local Path Provisioner YAML
+      get_url:
+        url: https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.30/deploy/local-path-storage.yaml
+        dest: "{{ D }}/local-path-storage.yaml"
+        mode: '0644'
+
+    - name: Modify ConfigMap in the YAML file
+      ansible.builtin.replace:
+        path: "{{ D }}/local-path-storage.yaml"
+        regexp: '"paths":\[".*"\]'
+        replace: '"paths":["{{ localpath_provisioner | default("/tmp/k8s-vol") }}"]'
+
+    - name: Apply modified Local Path Provisioner YAML
+      kubernetes.core.k8s:
+        kubectl: apply
+        src: "{{ D }}/local-path-storage.yaml"
+
+    - name: Set Local Path Storage as default StorageClass
+      kubernetes.core.k8s:
+        state: patch
+        kind: StorageClass
+        name: local-path
+        api_version: storage.k8s.io/v1
+        patch:
+          metadata:
+            annotations:
+              storageclass.kubernetes.io/is-default-class: "true"

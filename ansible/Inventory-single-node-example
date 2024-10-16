@@ -2,11 +2,11 @@
 
 ext_dns_name="dev4.example.com"
 letsencrypt_email="root@example.com"
-
+base_path=/home/ubuntu
 D="/root/.kubesol"
 
 hosts_gw="kubesol-dev4-c1"
-
+localpath_provisioner="/opt/k8s-vol"
 [controller_one]
 kubesol-dev4-c1  controller_worker=true ansible_connection=local 
 
