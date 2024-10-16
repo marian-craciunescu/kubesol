@@ -22,6 +22,7 @@
 
     - name: Apply modified Local Path Provisioner YAML
       kubernetes.core.k8s:
+        remote_src: no
         state: present
         src: "{{ D }}/local-path-storage.yaml"
       become: yes
