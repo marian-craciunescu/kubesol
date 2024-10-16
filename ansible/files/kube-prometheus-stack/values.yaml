@@ -7,17 +7,17 @@ prometheus:
     storageSpec:
       volumeClaimTemplate:
         spec:
-          storageClassName: default
+          storageClassName: longhorn
           accessModes: ["ReadWriteOnce"]
           resources:
             requests:
-              storage: 1Gi
+              storage: 2Gi
     serviceMonitorSelectorNilUsesHelmValues: false
 grafana:
   persistence:
     enabled: true
     type: pvc
-    storageClassName: default
+    storageClassName: "longhorn"
     accessModes:
       - ReadWriteOnce
     size: 1Gi

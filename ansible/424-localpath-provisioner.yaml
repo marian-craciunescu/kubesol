@@ -20,6 +20,14 @@
         regexp: '"paths":\[".*"\]'
         replace: '"paths":["{{ localpath_provisioner | default("/tmp/k8s-vol") }}"]'
 
+    - name: Change ownership of the .kubesol directory to ubuntu
+      ansible.builtin.file:
+        path: "{{ D }}"
+        owner: ubuntu
+        group: ubuntu
+        mode: '0755'
+        recurse: yes
+
     - name: Copy Local Path Provisioner YAML to /tmp
       copy:
         src: "{{ D }}/local-path-storage.yaml"
