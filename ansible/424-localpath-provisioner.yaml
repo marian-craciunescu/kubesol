@@ -22,7 +22,7 @@
 
     - name: Apply modified Local Path Provisioner YAML
       kubernetes.core.k8s:
-        kubectl: apply
+        state: present
         src: "{{ D }}/local-path-storage.yaml"
 
     - name: Set Local Path Storage as default StorageClass
