@@ -20,11 +20,16 @@
         regexp: '"paths":\[".*"\]'
         replace: '"paths":["{{ localpath_provisioner | default("/tmp/k8s-vol") }}"]'
 
+    - name: Copy Local Path Provisioner YAML to /tmp
+      copy:
+        src: "{{ D }}/local-path-storage.yaml"
+        dest: /tmp/local-path-storage.yaml
+        mode: '0644'
+
     - name: Apply modified Local Path Provisioner YAML
       kubernetes.core.k8s:
-        remote_src: no
         state: present
-        src: "{{ D }}/local-path-storage.yaml"
+        src: /tmp/local-path-storage.yaml
       become: yes
 
     - name: Set Local Path Storage as default StorageClass
