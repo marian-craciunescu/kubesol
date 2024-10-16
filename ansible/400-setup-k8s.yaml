@@ -9,7 +9,7 @@
 - import_playbook: 431-longhorn-helm.yaml
 - import_playbook: 432-longhorn-web.yaml
 - import_playbook: 424-localpath-provisioner.yaml
-- import_playbook: 440-directpv.yaml
+#- import_playbook: 440-directpv.yaml
 
 ### dummy exmples
 #- import_playbook: 450-simple-pod.yaml
