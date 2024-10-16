@@ -4,18 +4,11 @@
   gather_facts: false
   become: yes
   tasks:
-    - name: Check if the longhorn device is already formatted
-      command: lsblk -f /dev/{{ longhorn_device }}
-      register: device_info
-      ignore_errors: true
-
-    - name: Format longhorn device if not formatted
+    - name: Format longhorn device
       filesystem:
         fstype: ext4
         dev: "/dev/{{ longhorn_device }}"
-      when:
-        - longhorn_device is defined
-        - device_info.stdout.find('ext4') == -1
+      when: longhorn_device is defined
 
     - name: Mount longhorn device
       mount:
@@ -28,10 +21,10 @@
     - name: Install longhorn requirements nfs for RWM
       apt:
         pkg:
-          - open-iscsi
-          - nfs-kernel-server
+        - open-iscsi
+        - nfs-kernel-server
 
-    # https://longhorn.io/kb/troubleshooting-volume-with-multipath/
+  # https://longhorn.io/kb/troubleshooting-volume-with-multipath/
     - name: Longhorn multipath.conf fix
       copy:
         dest: /etc/multipath.conf
